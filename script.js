@@ -174,3 +174,36 @@ let books = [
       ]
     }
   ]
+
+
+function init() {
+  renderMainContent()
+}
+
+function renderMainContent() {
+  contentRef = document.getElementById("main_content")
+  contentRef.innerHTML = ""
+
+  for (index = 0; index < books.length; index++) {
+    let myContent = books[index];
+    contentRef.innerHTML += getMainContent(index);
+  }
+}
+
+function getMainContent(index) {
+  return `
+            <div class="book_display">
+                <div class="book_cover">
+                    <img src="./assets/img/cover/${index}.jpg" alt="">
+                </div>
+                <div class="book_details">
+                    <h2 id="book_name">${books[index].name}</h2>
+                    <p id="book_author"><b>Autor: </b> ${books[index].author}</p>
+                    <p id="book_year"><b>Erscheinungsjahr: </b> ${books[index].publishedYear}</p>
+                    <p id="book_genre"><b>Genre :</b> ${books[index].genre}</p>
+                    <span id="book_price"> ${books[index].price.toFixed(2).replace(`.`, `,`)} €</span>
+                    <button id="book_likes" class="liked_${books[index].liked}"> ${books[index].likes} ♥</button>
+                </div>
+            </div>
+  `
+}
