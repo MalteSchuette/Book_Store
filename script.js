@@ -175,6 +175,7 @@ let books = [
     }
   ]
 
+  let likedBooks = []
 
 function init() {
   renderMainContent()
@@ -184,15 +185,21 @@ function renderMainContent() {
   contentRef = document.getElementById("main_content")
   contentRef.innerHTML = ""
 
-  for (index = 0; index < books.length; index++) {
+  for (let index = 0; index < books.length; index++) {
     let myContent = books[index];
     contentRef.innerHTML += getMainContent(index);
+    for (let i=0; i< books[index].comments.length;i++) {
+      let myName = books[index].comments[i].name;
+      let myComment = books[index].comments[i].comment;
+      document.getElementById(`comments_window_${index}`).innerHTML += getCommentSection(myName, myComment);
+    }
   }
 }
 
 function getMainContent(index) {
   return `
             <div class="book_display">
+              <div class="book_information">
                 <div class="book_cover">
                     <img src="./assets/img/cover/${index}.jpg" alt="">
                 </div>
@@ -202,8 +209,46 @@ function getMainContent(index) {
                     <p id="book_year"><b>Erscheinungsjahr: </b> ${books[index].publishedYear}</p>
                     <p id="book_genre"><b>Genre :</b> ${books[index].genre}</p>
                     <span id="book_price"> ${books[index].price.toFixed(2).replace(`.`, `,`)} €</span>
-                    <button id="book_likes" class="liked_${books[index].liked}"> ${books[index].likes} ♥</button>
+                    <button id="book_likes" class="liked_${books[index].liked}" onclick="toggleLikes(${index})"> ${books[index].likes} ♥</button>
                 </div>
+              </div>
+              <button id="comment_headline" onclick="toggleComments(${index})">Kommentare (${books[index].comments.length})</button>
+              <div id="comment_section_${index}" class="d_none">
+                <div id="comments_window_${index}" class="comments_window"> </div>
+                <input id="user_input_${index}" class="user_input" type="text" placeholder="Verfasse einen Kommentar...">
+                <button id="button_send_user_input_${index}" class="button_send_user_input">Senden</button>
+              </div>
             </div>
+
   `
+}
+
+function getCommentSection(myName, myComment) {
+return `
+<p> <span class="user_name" >${myName} : </span> ${myComment} </p>
+`
+}
+
+function sendComment(index) {
+  let userName = document.getElementById(`user_name_${index}`).value
+  let userInput = document.getElementById(`user_input_${index}`).value
+
+}
+
+
+function toggleComments(index) {
+  document.getElementById(`comment_section_${index}`).classList.toggle("d_none")
+}
+
+function toggleLikes(index) {
+  if (books[index].liked == true) {
+    books[index].liked = false;
+    books[index].likes--
+    renderMainContent();
+  }
+  else {
+    books[index].liked = true;
+    books[index].likes++
+    renderMainContent();
+  }
 }
