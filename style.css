@@ -20,7 +20,6 @@ header {
     display: flex;
     align-items: center;
     justify-content:center;
-
 }
 
 header img {
@@ -53,7 +52,7 @@ main {
 footer {
     height: 100px;
     width: 100%;
-    background-color: #002A32;
+    background-color: #07181b;
 }
 
 button {
@@ -137,7 +136,7 @@ button {
 }
 
 .user_input {
-    width: 100%;
+    width: calc(100% - 105px);
     font-size: 16px;
     box-sizing: border-box;
     margin-bottom: 8px;
@@ -156,14 +155,10 @@ button {
     margin-top: 16px;
 }
 
-
-
 #comment_headline:hover {
     cursor: pointer;
     color: #F24135;
 }
-
-
 
 .d_none {
     display: none;
@@ -190,4 +185,29 @@ button {
 
 #button_favorites {
     width: 300px;
+    margin-right: 50px;
+}
+
+#button_all_books {
+    width: 300px;
+    margin-right: 50px;
+}
+
+#filter_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.active_rn {
+    color: #F24135;
+    border-color: #F24135;
+}
+
+#user_name_input {
+    width: 100px;
+}
+
+#comment_inputs {
+    display: flex;
 }

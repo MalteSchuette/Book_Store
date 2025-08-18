@@ -175,16 +175,18 @@ let books = [
     }
   ]
 
-  let likedBooks = []
+
 
 function init() {
+  getFromLocalStorage()
   renderMainContent()
 }
 
 function renderMainContent() {
   contentRef = document.getElementById("main_content")
   contentRef.innerHTML = ""
-
+  document.getElementById("button_all_books").classList.add("active_rn")
+  document.getElementById("button_favorites").classList.remove("active_rn")
   for (let index = 0; index < books.length; index++) {
     let myContent = books[index];
     contentRef.innerHTML += getMainContent(index);
@@ -215,8 +217,11 @@ function getMainContent(index) {
               <button id="comment_headline" onclick="toggleComments(${index})">Kommentare (${books[index].comments.length})</button>
               <div id="comment_section_${index}" class="d_none">
                 <div id="comments_window_${index}" class="comments_window"> </div>
-                <input id="user_input_${index}" class="user_input" type="text" placeholder="Verfasse einen Kommentar...">
-                <button id="button_send_user_input_${index}" class="button_send_user_input">Senden</button>
+                <div id="comments_inputs">
+                  <input id="user_name_input_${index}" class="user_input" type="text" placeholder="Name...">
+                  <input id="user_input_${index}" class="user_input" type="text" placeholder="Verfasse einen Kommentar...">
+                </div>
+                <button id="button_send_user_input_${index}" class="button_send_user_input" onclick="sendComment(${index})">Senden</button>
               </div>
             </div>
 
@@ -230,9 +235,14 @@ return `
 }
 
 function sendComment(index) {
-  let userName = document.getElementById(`user_name_${index}`).value
+  let userName = document.getElementById(`user_name_input_${index}`).value
   let userInput = document.getElementById(`user_input_${index}`).value
 
+  books[index].comments.push({name: userName, comment: userInput})
+  console.log(books[index].comments);
+  saveToLocalStorage()
+  renderMainContent()
+  toggleComments(index)
 }
 
 
@@ -244,11 +254,42 @@ function toggleLikes(index) {
   if (books[index].liked == true) {
     books[index].liked = false;
     books[index].likes--
+    saveToLocalStorage()
     renderMainContent();
   }
   else {
     books[index].liked = true;
     books[index].likes++
+    saveToLocalStorage()
     renderMainContent();
   }
+}
+
+function renderFavoriteContent() {
+  contentRef = document.getElementById("main_content")
+  contentRef.innerHTML = ""
+  document.getElementById("button_all_books").classList.remove("active_rn")
+  document.getElementById("button_favorites").classList.add("active_rn")
+
+  for (let index = 0; index < books.length; index++) {
+    let myContent = books[index];
+    if (books[index].liked == true) {
+      contentRef.innerHTML += getMainContent(index);
+      for (let i=0; i< books[index].comments.length;i++) {
+        let myName = books[index].comments[i].name;
+        let myComment = books[index].comments[i].comment;
+        document.getElementById(`comments_window_${index}`).innerHTML += getCommentSection(myName, myComment);
+      }
+    }  
+  }
+}
+
+
+function saveToLocalStorage() {
+  localStorage.setItem("myBooks",JSON.stringify(books))
+}
+
+function getFromLocalStorage() {
+  let savedData = localStorage.getItem("myBooks")
+  books = JSON.parse(savedData)
 }
