@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    height: 100px;
+    height: 130px;
     width: 100%;
     background-color: #002A32;
     border-bottom: 2px solid  #F24135;
@@ -181,11 +181,18 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 50px;
+    cursor: pointer;
 }
 
 #button_favorites {
     width: 300px;
     margin-right: 50px;
+}
+
+#button_random {
+    width: 300px;
+    margin-right: 50px;    
 }
 
 #button_all_books {

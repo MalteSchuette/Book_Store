@@ -187,6 +187,7 @@ function renderMainContent() {
   contentRef.innerHTML = ""
   document.getElementById("button_all_books").classList.add("active_rn")
   document.getElementById("button_favorites").classList.remove("active_rn")
+  document.getElementById("button_random").classList.remove("active_rn")
   for (let index = 0; index < books.length; index++) {
     let myContent = books[index];
     contentRef.innerHTML += getMainContent(index);
@@ -270,6 +271,7 @@ function renderFavoriteContent() {
   contentRef.innerHTML = ""
   document.getElementById("button_all_books").classList.remove("active_rn")
   document.getElementById("button_favorites").classList.add("active_rn")
+  document.getElementById("button_random").classList.remove("active_rn")
 
   for (let index = 0; index < books.length; index++) {
     let myContent = books[index];
@@ -292,4 +294,15 @@ function saveToLocalStorage() {
 function getFromLocalStorage() {
   let savedData = localStorage.getItem("myBooks")
   books = JSON.parse(savedData)
+}
+
+function renderRandomBook() {
+  contentRef = document.getElementById("main_content")
+  contentRef.innerHTML = ""
+  document.getElementById("button_all_books").classList.remove("active_rn")
+  document.getElementById("button_favorites").classList.remove("active_rn")
+  document.getElementById("button_random").classList.add("active_rn")
+
+  let randomBook = Math.floor(Math.random() * books.length);
+  document.getElementById("main_content").innerHTML += getMainContent(randomBook);
 }

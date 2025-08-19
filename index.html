@@ -13,13 +13,14 @@
 <body onload="init()">
     <header>
         <div class="max_width">
-            <div class="logo">
+            <div class="logo" onclick="renderMainContent()">
                 <img src="./assets/Icons/logo_book_store.png" alt="Logo vom Book Store">
                 <span id="text_logo">Book Store</span>
             </div>
             <div id="filter_buttons">
                 <button id="button_all_books" onclick="renderMainContent()">Alle Bücher</button>
                 <button id="button_favorites" onclick="renderFavoriteContent()">Lieblingsbücher</button>
+                <button id="button_random" onclick="renderRandomBook()">Zufallsbuch</button>
             </div>
         </div>
     </header>
