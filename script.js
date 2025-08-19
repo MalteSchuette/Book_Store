@@ -173,9 +173,7 @@ let books = [
         }
       ]
     }
-  ]
-
-
+]
 
 function init() {
   getFromLocalStorage()
@@ -204,7 +202,7 @@ function getMainContent(index) {
             <div class="book_display">
               <div class="book_information">
                 <div class="book_cover">
-                    <img src="./assets/img/cover/${index}.jpg" alt="">
+                    <img src="./assets/img/cover/${index}.jpg" alt="Bild des Buchcovers">
                 </div>
                 <div class="book_details">
                     <h2 id="book_name">${books[index].name}</h2>
@@ -212,21 +210,23 @@ function getMainContent(index) {
                     <p id="book_year"><b>Erscheinungsjahr: </b> ${books[index].publishedYear}</p>
                     <p id="book_genre"><b>Genre :</b> ${books[index].genre}</p>
                     <span id="book_price"> ${books[index].price.toFixed(2).replace(`.`, `,`)} €</span>
-                    <button id="book_likes" class="liked_${books[index].liked}" onclick="toggleLikes(${index})"> ${books[index].likes} ♥</button>
-                </div>
+                    <div class="blur">
+                      <button id="book_likes" class="liked_${books[index].liked}" onclick="toggleLikes(${index})"> ${books[index].likes} ♥</button>
+                    </div>
+                  </div>
               </div>
               <button id="comment_headline" onclick="toggleComments(${index})">Kommentare (${books[index].comments.length})</button>
               <div id="comment_section_${index}" class="d_none">
                 <div id="comments_window_${index}" class="comments_window"> </div>
                 <div id="comments_inputs">
-                  <input id="user_name_input_${index}" class="user_input" type="text" placeholder="Name...">
+                  <input id="user_name_input_${index}" class="user_input_name" type="text" placeholder="Name...">
                   <input id="user_input_${index}" class="user_input" type="text" placeholder="Verfasse einen Kommentar...">
                 </div>
                 <button id="button_send_user_input_${index}" class="button_send_user_input" onclick="sendComment(${index})">Senden</button>
               </div>
             </div>
 
-  `
+          `
 }
 
 function getCommentSection(myName, myComment) {
@@ -240,12 +240,10 @@ function sendComment(index) {
   let userInput = document.getElementById(`user_input_${index}`).value
 
   books[index].comments.push({name: userName, comment: userInput})
-  console.log(books[index].comments);
   saveToLocalStorage()
   renderMainContent()
   toggleComments(index)
 }
-
 
 function toggleComments(index) {
   document.getElementById(`comment_section_${index}`).classList.toggle("d_none")
@@ -286,14 +284,15 @@ function renderFavoriteContent() {
   }
 }
 
-
 function saveToLocalStorage() {
   localStorage.setItem("myBooks",JSON.stringify(books))
 }
 
 function getFromLocalStorage() {
   let savedData = localStorage.getItem("myBooks")
-  books = JSON.parse(savedData)
+  if (savedData !== null && savedData !== "") {
+    books = JSON.parse(savedData)
+    }
 }
 
 function renderRandomBook() {
@@ -302,7 +301,11 @@ function renderRandomBook() {
   document.getElementById("button_all_books").classList.remove("active_rn")
   document.getElementById("button_favorites").classList.remove("active_rn")
   document.getElementById("button_random").classList.add("active_rn")
-
   let randomBook = Math.floor(Math.random() * books.length);
   document.getElementById("main_content").innerHTML += getMainContent(randomBook);
+}
+
+function showBurgerMenu() {
+  document.getElementById("burger_menu").classList.toggle('active')
+  document.getElementById("burger_nav").classList.toggle("d_none")
 }

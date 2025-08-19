@@ -7,7 +7,7 @@
 
 body {
     margin: 0;
-    background-color: #002A32;
+    background-color: #07191d;
     font-family: "Lexend", sans-serif;
     color: #F7F7F7;
 }
@@ -16,7 +16,7 @@ header {
     height: 130px;
     width: 100%;
     background-color: #002A32;
-    border-bottom: 2px solid  #F24135;
+    border-bottom: 2px solid  #ff5347;
     display: flex;
     align-items: center;
     justify-content:center;
@@ -53,6 +53,13 @@ footer {
     height: 100px;
     width: 100%;
     background-color: #07181b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer img {
+    max-height: 60px;
 }
 
 button {
@@ -107,7 +114,7 @@ button {
 .book_details span {
     margin-top: 40px;
     font-size: 40px;
-    color:#F24135
+    color:#F2FF1C
 }
 
 #book_price {
@@ -123,8 +130,8 @@ button {
 }
 
 .liked_true {
-    color:#F24135;
-    border-color: #F24135;
+    color:#FF5347;
+    border-color: #FF5347;
 }
 
 .comments_window {
@@ -140,11 +147,14 @@ button {
     font-size: 16px;
     box-sizing: border-box;
     margin-bottom: 8px;
-    
+}
+
+#comments_inputs {
+    display: flex;
 }
 
 .user_name {
-    color: #F24135;
+    color: #FF5347;
 }
 
 #comment_headline {
@@ -157,14 +167,14 @@ button {
 
 #comment_headline:hover {
     cursor: pointer;
-    color: #F24135;
+    color: #FF5347;
 }
 
 .d_none {
     display: none;
 }
 
-.user_name_input {
+.user_input_name {
     font-size: 16px;
     margin-bottom: 8px;
 }
@@ -207,14 +217,184 @@ button {
 }
 
 .active_rn {
-    color: #F24135;
-    border-color: #F24135;
+    color: #FF5347;
+    border-color: #ff645c;
 }
 
-#user_name_input {
-    width: 100px;
+.user_input_name {
+    width: 95px;
+    margin-right: 2px;
 }
 
 #comment_inputs {
     display: flex;
+}
+
+.burger_menu {
+    width: 30px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    display: none;
+    margin-right: 50px;
+}
+
+.burger_menu span {
+    display: block;
+    height: 4px;
+    background-color: #a3a0a0;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+    .burger_menu.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .burger_menu.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .burger_menu.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+.burger_nav {
+    background-color: #07181b;
+    padding: 16px;
+    border-radius: 5px;
+    position: absolute;
+    right: 85px;
+}
+
+.burger_nav span:hover {
+    color:#FF5347;
+    cursor: pointer;
+}
+
+.d_none {
+        display: none;
+}
+
+.burger_navigation {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 850px) {
+
+    #button_all_books {
+        display: none;
+    }
+
+    #button_favorites {
+        display: none;
+    }
+
+    #button_random {
+        display: none;
+    }
+
+    .burger_navigation {
+        display: flex;
+    }
+
+    .burger_menu {
+      display: flex;
+    }
+
+    .book_display {
+        width: 300px;
+    }
+
+    .book_information {
+        flex-direction: column;
+        align-items: cente;
+    }
+
+    .book_details h2 {
+        font-size: 20px;
+    }
+
+    button {
+        width: 300px;
+    }
+
+    #book_price {
+        align-self: auto;
+    }
+
+    .user_input {
+        width: 300px;
+    }
+
+    #comment_headline {
+        padding-left: 0;
+        text-align: left;
+    }
+
+    .book_cover img {
+        margin-right: 0;
+    }
+
+    .book_cover {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .book_details {
+        width: 300px;
+    }
+
+    #comments_inputs {
+    display: block;
+    }
+}
+
+@media(max-width: 555px) {
+    .logo {
+        scale: 0.8;
+        margin-left: 8px
+    }
+}
+
+@media (max-width: 400px) {
+
+    header img {
+        margin:0;
+    }
+
+    .book_display {
+        width: 250px;
+        margin: 8px
+    }
+
+    .book_details {
+        width: 250px;
+    }
+
+    .book_cover img {
+        max-width: 180px;
+    }
+
+    button {
+        width: 250px;
+    }
+
+    .user_input {
+        width: 250px;
+    }
+
+    #burger_menu {
+        margin-right: 16px;
+    }
+}
+
+@media (max-width: 340px) {
+
+    #text_logo {
+        display: none;
+    }
 }
