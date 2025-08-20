@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    height: 130px;
+    height: 160px;
     width: 100%;
     background-color: #002A32;
     border-bottom: 2px solid  #ff5347;
@@ -35,14 +35,16 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#main_content {
-    min-height: 100vh;
     background-image: url(./assets/img/background.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+}
+
+#main_content {
+    min-height: 100vh;
+
     flex: 1;
     display: flex;
     justify-content: center;
@@ -71,6 +73,12 @@ button {
     border: 3px solid #F7F7F7;
     box-sizing: border-box;
     cursor: pointer;
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+
+button:hover {
+    scale: 1.04;
 }
 
 .book_display {
@@ -142,8 +150,15 @@ button {
     padding: 8px;
 }
 
+.user_input_name {
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-right: 2px;
+    flex: 1;
+}
+
 .user_input {
-    width: calc(100% - 105px);
+    flex: 3;
     font-size: 16px;
     box-sizing: border-box;
     margin-bottom: 8px;
@@ -172,11 +187,6 @@ button {
 
 .d_none {
     display: none;
-}
-
-.user_input_name {
-    font-size: 16px;
-    margin-bottom: 8px;
 }
 
 .max_width {
@@ -221,11 +231,6 @@ button {
     border-color: #ff645c;
 }
 
-.user_input_name {
-    width: 95px;
-    margin-right: 2px;
-}
-
 #comment_inputs {
     display: flex;
 }
@@ -267,7 +272,7 @@ button {
     right: 85px;
 }
 
-.burger_nav span:hover {
+.burger_nav p:hover {
     color:#FF5347;
     cursor: pointer;
 }

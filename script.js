@@ -231,7 +231,7 @@ function getMainContent(index) {
 
 function getCommentSection(myName, myComment) {
 return `
-<p> <span class="user_name" >${myName} : </span> ${myComment} </p>
+<p> <span class="user_name" >${myName} : </span> <br> ${myComment} </p>
 `
 }
 
@@ -292,7 +292,7 @@ function getFromLocalStorage() {
   let savedData = localStorage.getItem("myBooks")
   if (savedData !== null && savedData !== "") {
     books = JSON.parse(savedData)
-    }
+  }
 }
 
 function renderRandomBook() {
