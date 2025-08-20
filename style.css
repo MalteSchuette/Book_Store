@@ -90,6 +90,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    border-radius: 12px;
 }
 
 .book_information {
@@ -373,7 +374,8 @@ button:hover {
 
     .book_display {
         width: 250px;
-        margin: 8px
+        margin: 4px;
+        margin-top: 8px
     }
 
     .book_details {

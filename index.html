@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Store</title>
     <link rel="stylesheet" href="style.css">
+    <script src="books.js" defer></script>
+    <script src="getHTML.js" defer></script>
     <script src="script.js" defer></script>
     <link rel="shortcut icon" href="./assets/Icons/logo_book_store.png" type="image/x-icon">
 </head>
@@ -18,8 +20,8 @@
                 <span id="text_logo">Book Store</span>
             </div>
             <div id="filter_buttons">
-                <button id="button_all_books" onclick="renderMainContent()">Alle Bücher</button>
-                <button id="button_favorites" onclick="renderFavoriteContent()">Lieblingsbücher</button>
+                <button id="button_all_books" onclick="renderContent(`all`)">Alle Bücher</button>
+                <button id="button_favorites" onclick="renderContent(`favorites`)">Lieblingsbücher</button>
                 <button id="button_random" onclick="renderRandomBook()">Zufallsbuch</button>
             </div>
             <div class="burger_navigation">
