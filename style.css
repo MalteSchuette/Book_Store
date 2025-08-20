@@ -156,6 +156,7 @@ button:hover {
     margin-bottom: 8px;
     margin-right: 2px;
     flex: 1;
+    box-sizing: border-box;
 }
 
 .user_input {
@@ -335,6 +336,10 @@ button:hover {
         width: 300px;
     }
 
+    .user_input_name {
+        width: 300px;
+    }
+
     #comment_headline {
         padding-left: 0;
         text-align: left;
@@ -391,6 +396,10 @@ button:hover {
     }
 
     .user_input {
+        width: 250px;
+    }
+
+    .user_input_name {
         width: 250px;
     }
 
